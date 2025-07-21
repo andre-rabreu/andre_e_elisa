@@ -1,4 +1,5 @@
 import 'package:andre_e_elisa/pages/home_page.dart';
+import 'package:andre_e_elisa/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "André & Elisa",
-      home: const HomePage(),
+      home: const SplashScreen(),
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
