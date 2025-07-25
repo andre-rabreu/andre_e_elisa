@@ -1,0 +1,33 @@
+name: Deploy Flutter Web to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Ou a branch principal do seu repositório
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.7'  # Substitua pela versão que você usa, se diferente
+
+      - name: Configurar base href
+        run: |
+          sed -i 's|<base href="/">|<base href="/andre_e_elisa/">|' web/index.html
+
+      - name: Rodar build do Flutter Web
+        run: flutter build web
+
+      - name: Deploy para o GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web
+          publish_branch: gh-pages
