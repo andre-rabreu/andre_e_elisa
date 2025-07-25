@@ -21,7 +21,7 @@ jobs:
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.7'  # Substitua pela versão que você usa, se diferente
+          flutter-version: '3.32.7'  # Substitua pela versão que você usa, se diferente
 
       - name: Configurar base href
         run: |
