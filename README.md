@@ -1,3 +1,5 @@
+![Deploy Flutter Web](https://github.com/SEU_USUARIO/andre_e_elisa/actions/workflows/deploy.yml/badge.svg)
+
 # andre_e_elisa
 
 A new Flutter project.
