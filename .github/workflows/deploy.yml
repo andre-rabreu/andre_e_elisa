@@ -21,7 +21,7 @@ jobs:
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.32.7'  # Substitua pela versão que você usa, se diferente
+          flutter-version: '3.32.7'  # Use a versão que seu projeto requer
 
       - name: Configurar base href
         run: |
@@ -36,3 +36,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/web
           publish_branch: gh-pages
+          
