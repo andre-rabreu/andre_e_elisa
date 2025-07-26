@@ -13,20 +13,20 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Color getColor(Set<WidgetState> states) {
-      const Set<WidgetState> interactiveStates = <WidgetState>{
-        WidgetState.pressed,
-        WidgetState.hovered,
-        WidgetState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.red;
-    }
+    // Color getColor(Set<WidgetState> states) {
+    //   const Set<WidgetState> interactiveStates = <WidgetState>{
+    //     WidgetState.pressed,
+    //     WidgetState.hovered,
+    //     WidgetState.focused,
+    //   };
+    //   if (states.any(interactiveStates.contains)) {
+    //     return Colors.green;
+    //   }
+    //   return Colors.grey;
+    // }
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 37, 23, 38),
+      backgroundColor: Color.fromARGB(255, 163, 109, 153),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +40,14 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 Checkbox(
                   checkColor: Colors.white,
-                  fillColor: WidgetStateColor.resolveWith(getColor),
+                  // fillColor: WidgetStateColor.resolveWith(getColor),
+                  fillColor: WidgetStateColor.resolveWith((states) {
+                    if (isChecked) {
+                      return Colors.green;
+                    } else {
+                      return Colors.grey;
+                    }
+                  }),
                   value: isChecked,
                   onChanged: (bool? value) {
                     setState(() {
