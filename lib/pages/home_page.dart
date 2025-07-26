@@ -21,6 +21,11 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             ClockWidget(),
+            Image.asset(
+              'assets/images/parque-flamboyant.jpg',
+              width: 480,
+              height: 640,
+            ),
           ],
         ),
       ),
