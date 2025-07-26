@@ -1,4 +1,4 @@
-![Deploy Flutter Web](https://github.com/SEU_USUARIO/andre_e_elisa/actions/workflows/deploy.yml/badge.svg)
+![Deploy Flutter Web](https://github.com/andre-rabreu/andre_e_elisa/actions/workflows/deploy.yml/badge.svg)
 
 # andre_e_elisa
 
