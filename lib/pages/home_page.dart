@@ -12,21 +12,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 86, 26, 92),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Text(
-              'Estamos juntos há...',
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-            ClockWidget(),
-            Image.asset(
-              'assets/images/parque-flamboyant.jpg',
-              width: 480,
-              height: 640,
-            ),
-          ],
+      backgroundColor: Color.fromARGB(255, 222, 153, 220),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 192),
+              Text(
+                'Estamos juntos há...',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+              ClockWidget(),
+              Image.asset(
+                'assets/images/parque-flamboyant.jpg',
+                width: 480,
+                height: 640,
+              ),
+            ],
+          ),
         ),
       ),
     );

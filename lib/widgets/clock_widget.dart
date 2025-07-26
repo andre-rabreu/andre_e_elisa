@@ -71,7 +71,7 @@ class _ClockWidgetState extends State<ClockWidget>
 
     return Text(
       formatDuration(startDate, temp),
-      style: TextStyle(color: Colors.white, fontSize: 24),
+      style: TextStyle(color: Colors.white, fontSize: 48),
     );
   }
 }

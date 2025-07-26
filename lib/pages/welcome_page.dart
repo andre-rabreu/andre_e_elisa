@@ -1,14 +1,14 @@
 import 'package:andre_e_elisa/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _WelcomePageState extends State<WelcomePage> {
   bool isChecked = false;
 
   @override
