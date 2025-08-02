@@ -1,68 +1,98 @@
+import 'package:andre_e_elisa/breakpoints.dart';
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 
 class TimelineEntryWidget extends StatelessWidget {
   final String date;
-  final String filename;
+  final String imageUrl;
   final String title;
 
   const TimelineEntryWidget({
     super.key,
     required this.date,
-    required this.filename,
+    required this.imageUrl,
     required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 800),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width > breakpointMobile
+          ? imageWidthWeb + marginWeb * 2
+          : imageWidthMobile + marginMobile * 2,
       child: Column(
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: LikeButton(
+                  size: MediaQuery.of(context).size.width > breakpointMobile
+                      ? 32
+                      : 24,
+                ),
+              ),
               Text(
                 date,
                 textAlign: TextAlign.right,
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.width > breakpointMobile
+                      ? 24
+                      : 16,
+                ),
               ),
             ],
           ),
           Container(height: 2, color: Colors.white),
           SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Image.asset(
-                'assets/images/$filename',
-                width: 300,
-                height: 400,
-                fit: BoxFit.fitWidth,
-              ),
-              SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            title,
-                            style: TextStyle(color: Colors.white, fontSize: 24),
-                          ),
+          Container(
+            color: Colors.white,
+            child: Container(
+              margin: MediaQuery.of(context).size.width > breakpointMobile
+                  ? EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0)
+                  : EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                    (loadingProgress.expectedTotalBytes ?? 1)
+                              : null,
                         ),
-                      ],
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.error);
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize:
+                            MediaQuery.of(context).size.width > breakpointMobile
+                            ? 40
+                            : 24,
+                      ),
                     ),
-                    SizedBox(height: 8),
-                    const Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at eleifend velit. Ut cursus nibh quis ipsum laoreet elementum. Pellentesque at sem egestas, pellentesque ligula eget, tristique diam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas vestibulum id nunc et iaculis. Sed elementum augue vitae nulla consequat, eget vehicula mi euismod. Integer nec velit in leo cursus lobortis quis non arcu. In hac habitasse platea dictumst. Duis venenatis rhoncus sapien sed ornare.',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ],
       ),

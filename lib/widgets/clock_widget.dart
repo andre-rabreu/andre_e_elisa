@@ -1,3 +1,4 @@
+import 'package:andre_e_elisa/breakpoints.dart';
 import 'package:flutter/material.dart';
 
 class ClockWidget extends StatefulWidget {
@@ -71,7 +72,13 @@ class _ClockWidgetState extends State<ClockWidget>
 
     return Text(
       formatDuration(startDate, temp),
-      style: TextStyle(color: Colors.white, fontSize: 48),
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: MediaQuery.of(context).size.width > breakpointMobile
+            ? 64
+            : 32,
+      ),
     );
   }
 }
