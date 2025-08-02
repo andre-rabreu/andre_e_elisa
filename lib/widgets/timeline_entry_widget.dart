@@ -48,7 +48,17 @@ class TimelineEntryWidget extends StatelessWidget {
           Container(height: 2, color: Colors.white),
           SizedBox(height: 16),
           Container(
-            color: Colors.white,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: const Color.fromARGB(90, 0, 0, 0),
+                  spreadRadius: 5.0,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
             child: Container(
               margin: MediaQuery.of(context).size.width > breakpointMobile
                   ? EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0)
