@@ -77,7 +77,7 @@ class _ClockWidgetState extends State<ClockWidget>
         color: Colors.white,
         fontSize: MediaQuery.of(context).size.width > breakpointMobile
             ? 64
-            : 32,
+            : 40,
       ),
     );
   }

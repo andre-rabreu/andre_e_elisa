@@ -1,3 +1,4 @@
+import 'package:andre_e_elisa/breakpoints.dart';
 import 'package:andre_e_elisa/widgets/clock_widget.dart';
 import 'package:andre_e_elisa/widgets/timeline_entry_widget.dart';
 import 'package:flutter/material.dart';
@@ -78,10 +79,16 @@ class _HomePageState extends State<HomePage> {
             margin: const EdgeInsets.symmetric(horizontal: 40.0),
             child: Column(
               children: <Widget>[
-                SizedBox(height: 192),
+                SizedBox(height: 128),
                 Text(
                   'Estamos juntos há...',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize:
+                        MediaQuery.of(context).size.width > breakpointMobile
+                        ? 32
+                        : 24,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
