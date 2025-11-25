@@ -1,7 +1,8 @@
-import 'package:andre_e_elisa/breakpoints.dart';
+import 'package:andre_e_elisa/constants.dart';
 import 'package:andre_e_elisa/widgets/clock_widget.dart';
 import 'package:andre_e_elisa/widgets/music_player_widget.dart';
 import 'package:andre_e_elisa/widgets/timeline_entry_widget.dart';
+import 'package:andre_e_elisa/widgets/trivia_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -73,36 +74,50 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 218, 152, 206),
       body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: Column(
-              children: <Widget>[
-                MusicPlayerWidget(),
-                ClockWidget(),
-                Column(
-                  children: timelineEntries
-                      .expand(
-                        (entry) => [
-                          SizedBox(height: 64),
-                          TimelineEntryWidget(
-                            date: entry['date']!,
-                            imageUrl: entry['imageUrl']!,
-                            title: entry['title']!,
-                          ),
-                        ],
-                      )
-                      .toList(),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [primaryColor, backgroundColor],
+              stops: [0.0, 0.1]
+            ),
+          ),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 700),
+              child: Padding(
+                padding: EdgeInsets.all(paddingMobile),
+                child: Column(
+                  spacing: paddingMobile,
+                  children: <Widget>[
+                    MusicPlayerWidget(),
+                    ClockWidget(),
+                    TriviaWidget(),
+                    Column(
+                      children: timelineEntries
+                          .expand(
+                            (entry) => [
+                              SizedBox(height: 64),
+                              TimelineEntryWidget(
+                                date: entry['date']!,
+                                imageUrl: entry['imageUrl']!,
+                                title: entry['title']!,
+                              ),
+                            ],
+                          )
+                          .toList(),
+                    ),
+                    SizedBox(height: 64),
+                    Text(
+                      'Eu te amo!',
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                    SizedBox(height: 128),
+                  ],
                 ),
-                SizedBox(height: 64),
-                Text(
-                  'Eu te amo!',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
-                ),
-                SizedBox(height: 128),
-              ],
+              ),
             ),
           ),
         ),

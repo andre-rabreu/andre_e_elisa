@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:andre_e_elisa/breakpoints.dart';
+import 'package:andre_e_elisa/constants.dart';
 
 class ClockWidget extends StatefulWidget {
   const ClockWidget({super.key});
@@ -11,7 +11,7 @@ class ClockWidget extends StatefulWidget {
 
 class _ClockWidgetState extends State<ClockWidget> {
   Timer? _timer;
-  
+
   final startDate = DateTime.parse('2025-06-06 22:36:00Z');
 
   int years = 0;
@@ -40,7 +40,7 @@ class _ClockWidgetState extends State<ClockWidget> {
     final end = startDate.isBefore(now) ? now : startDate;
 
     int totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
-    
+
     if (end.day < start.day) {
       totalMonths--;
     }
@@ -78,7 +78,8 @@ class _ClockWidgetState extends State<ClockWidget> {
     ];
 
     return Card(
-      elevation: 8,
+      color: surfaceColor,
+      elevation: cardElevation,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -86,19 +87,23 @@ class _ClockWidgetState extends State<ClockWidget> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'André e Elisa',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: onSurfaceColor,
+                  ),
                 ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Juntos desde 2025',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16, color: onSurfaceColor),
                 ),
               ],
             ),
@@ -133,8 +138,8 @@ class _TimeCard extends StatelessWidget {
       width: 96,
       height: 96,
       child: Card(
-        elevation: 4,
-        color: Colors.grey[50],
+        elevation: cardElevation / 2,
+        color: overlayColor,
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Center(
@@ -143,10 +148,10 @@ class _TimeCard extends StatelessWidget {
               children: [
                 Text(
                   '$value',
-                  style: const TextStyle(
-                    fontSize: 20, 
+                  style: TextStyle(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
+                    color: primaryColor,
                   ),
                 ),
                 const SizedBox(height: 4),
