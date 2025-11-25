@@ -85,7 +85,7 @@ class NumberOfTravels extends StatelessWidget {
             CircleAvatar(
               backgroundColor: primaryColor,
               radius: 24,
-              child: Icon(Icons.agriculture, color: onPrimaryColor),
+              child: Icon(Icons.flight_takeoff, color: onPrimaryColor),
             ),
             SizedBox(width: paddingMobile),
             Expanded(
