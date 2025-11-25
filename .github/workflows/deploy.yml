@@ -28,7 +28,7 @@ jobs:
           sed -i 's|<base href="/">|<base href="/andre_e_elisa/">|' web/index.html
 
       - name: Rodar build do Flutter Web
-        run: flutter build web
+        run: flutter build web --base-href "/andre_e_elisa/"
 
       - name: Deploy para o GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
