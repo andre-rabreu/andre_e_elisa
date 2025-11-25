@@ -1,5 +1,6 @@
-import 'package:andre_e_elisa/breakpoints.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:andre_e_elisa/breakpoints.dart';
 
 class ClockWidget extends StatefulWidget {
   const ClockWidget({super.key});
@@ -8,76 +9,155 @@ class ClockWidget extends StatefulWidget {
   State<ClockWidget> createState() => _ClockWidgetState();
 }
 
-class _ClockWidgetState extends State<ClockWidget>
-    with SingleTickerProviderStateMixin {
-  late final tickerProvider = createTicker((elapsed) => setState(() {}));
+class _ClockWidgetState extends State<ClockWidget> {
+  Timer? _timer;
+  
   final startDate = DateTime.parse('2025-06-06 22:36:00Z');
+
+  int years = 0;
+  int months = 0;
+  int days = 0;
+  int hours = 0;
+  int minutes = 0;
+  int seconds = 0;
 
   @override
   void initState() {
-    tickerProvider.start();
     super.initState();
+    _updateTime();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _updateTime());
   }
 
   @override
   void dispose() {
-    tickerProvider.stop();
+    _timer?.cancel();
     super.dispose();
   }
 
-  String formatDuration(DateTime start, DateTime now) {
-    // Garante que start <= now
-    if (now.isBefore(start)) {
-      final temp = start;
-      start = now;
-      now = temp;
+  void _updateTime() {
+    final now = DateTime.now();
+    final start = startDate.isBefore(now) ? startDate : now;
+    final end = startDate.isBefore(now) ? now : startDate;
+
+    int totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
+    
+    if (end.day < start.day) {
+      totalMonths--;
     }
 
-    // Calcula meses completos baseados no dia 10
-    int months = (now.year - start.year) * 12 + (now.month - start.month);
-    DateTime lastMonthAnniversary = DateTime(
+    final baseDate = DateTime(
       start.year,
-      start.month + months,
+      start.month + totalMonths,
       start.day,
       start.hour,
       start.minute,
       start.second,
     );
 
-    if (now.isBefore(lastMonthAnniversary)) {
-      months -= 1;
-      lastMonthAnniversary = DateTime(
-        start.year,
-        start.month + months,
-        start.day,
-        start.hour,
-        start.minute,
-        start.second,
-      );
-    }
+    final diff = end.difference(baseDate);
 
-    Duration difference = now.difference(lastMonthAnniversary);
-
-    int days = difference.inDays;
-    int hours = difference.inHours % 24;
-    int minutes = difference.inMinutes % 60;
-    int seconds = difference.inSeconds % 60;
-
-    return '${months}m ${days}d ${hours.toString().padLeft(2, '0')}h ${minutes.toString().padLeft(2, '0')}m ${seconds.toString().padLeft(2, '0')}s';
+    setState(() {
+      years = totalMonths ~/ 12;
+      months = totalMonths % 12;
+      days = diff.inDays;
+      hours = diff.inHours % 24;
+      minutes = diff.inMinutes % 60;
+      seconds = diff.inSeconds % 60;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final temp = DateTime.now();
+    final timeUnits = [
+      {'value': years, 'label': 'Anos'},
+      {'value': months, 'label': 'Meses'},
+      {'value': days, 'label': 'Dias'},
+      {'value': hours, 'label': 'Horas'},
+      {'value': minutes, 'label': 'Minutos'},
+      {'value': seconds, 'label': 'Segundos'},
+    ];
 
-    return Text(
-      formatDuration(startDate, temp),
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: MediaQuery.of(context).size.width > breakpointMobile
-            ? 64
-            : 40,
+    return Card(
+      elevation: 8,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Text(
+                  'André e Elisa',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Text(
+                  'Juntos desde 2025',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              alignment: WrapAlignment.center,
+              children: timeUnits.map((unit) {
+                return _TimeCard(
+                  value: unit['value'] as int,
+                  label: unit['label'] as String,
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _TimeCard extends StatelessWidget {
+  final int value;
+  final String label;
+
+  const _TimeCard({required this.value, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 96,
+      height: 96,
+      child: Card(
+        elevation: 4,
+        color: Colors.grey[50],
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '$value',
+                  style: const TextStyle(
+                    fontSize: 20, 
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  label,
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -81,21 +81,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: <Widget>[
                 MusicPlayerWidget(),
-                SizedBox(height: 128),
-                Text(
-                  'Estamos juntos há...',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize:
-                        MediaQuery.of(context).size.width > breakpointMobile
-                        ? 32
-                        : 24,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: ClockWidget(),
-                ),
+                ClockWidget(),
                 Column(
                   children: timelineEntries
                       .expand(
