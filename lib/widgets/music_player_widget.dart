@@ -1,3 +1,4 @@
+import 'package:andre_e_elisa/breakpoints.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
   late AudioPlayer player;
   late AnimationController controller;
 
-  double volume = 0.5;
+  double volume = 0.0;
 
   bool isPlaying = true;
 
@@ -63,21 +64,19 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
     return Card(
       elevation: 8,
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(paddingMobile),
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(
-                8,
-              ),
+              borderRadius: BorderRadius.circular(8),
               child: Image.asset(
                 'images/jorge-e-mateus.jpg',
-                width: 128, // Tamanho fixo
-                height: 128,
+                width: 144,
+                height: 144,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) => Container(
-                  width: 128,
-                  height: 128,
+                  width: 144,
+                  height: 144,
                   color: Colors.grey[300],
                   child: const Icon(
                     Icons.music_note,
@@ -87,46 +86,51 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                 ),
               ),
             ),
-            SizedBox(width: 24,),
+            SizedBox(width: paddingMobile),
             Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        iconSize: 24,
-                        onPressed: () => togglePlay(),
-                        icon: AnimatedIcon(
-                          icon: AnimatedIcons.pause_play,
-                          progress: controller,
-                        ),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Mil Anos',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      const Icon(Icons.volume_mute, size: 20),
-                      Expanded(
-                        child: Slider(
-                          value: volume,
-                          min: 0.0,
-                          max: 1.0,
-                          label: "${(volume * 100).round()}%",
-                          onChanged: (double newValue) {
-                            setState(() {
-                              volume = newValue;
-                            });
-                            player.setVolume(newValue);
-                          },
+                    ),
+                    Text('Jorge e Mateus', style: TextStyle(fontSize: 16)),
+                    Row(
+                      children: [
+                        const Icon(Icons.volume_mute, size: 20),
+                        Expanded(
+                          child: Slider(
+                            value: volume,
+                            min: 0.0,
+                            max: 1.0,
+                            label: "${(volume * 100).round()}%",
+                            onChanged: (double newValue) {
+                              setState(() {
+                                volume = newValue;
+                              });
+                              player.setVolume(newValue);
+                            },
+                          ),
                         ),
+                        const Icon(Icons.volume_up, size: 20),
+                      ],
+                    ),
+                    IconButton(
+                      iconSize: 24,
+                      onPressed: () => togglePlay(),
+                      icon: AnimatedIcon(
+                        icon: AnimatedIcons.pause_play,
+                        progress: controller,
                       ),
-                      const Icon(Icons.volume_up, size: 20),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

@@ -11,7 +11,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "André & Elisa",
-      home: const WelcomePage(),
+      home: const HomePage(),
       theme: ThemeData(textTheme: GoogleFonts.latoTextTheme()),
       routes: {"/home": (context) => const HomePage()},
     );
