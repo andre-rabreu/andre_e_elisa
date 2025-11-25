@@ -1,5 +1,6 @@
 import 'package:andre_e_elisa/breakpoints.dart';
 import 'package:andre_e_elisa/widgets/clock_widget.dart';
+import 'package:andre_e_elisa/widgets/music_player_widget.dart';
 import 'package:andre_e_elisa/widgets/timeline_entry_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -79,6 +80,7 @@ class _HomePageState extends State<HomePage> {
             margin: const EdgeInsets.symmetric(horizontal: 40.0),
             child: Column(
               children: <Widget>[
+                MusicPlayerWidget(),
                 SizedBox(height: 128),
                 Text(
                   'Estamos juntos há...',

@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "André & Elisa",
       home: const WelcomePage(),
-      theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
+      theme: ThemeData(textTheme: GoogleFonts.latoTextTheme()),
       routes: {"/home": (context) => const HomePage()},
     );
   }
