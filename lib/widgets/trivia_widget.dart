@@ -10,9 +10,9 @@ class TriviaWidget extends StatelessWidget {
       color: surfaceColor,
       elevation: cardElevation,
       child: Padding(
-        padding: EdgeInsets.all(paddingMobile),
+        padding: EdgeInsets.all(padding),
         child: Column(
-          spacing: paddingMobile,
+          spacing: padding,
           children: [AnniverssaryWidget(), NumberOfTravels()],
         ),
       ),
@@ -29,7 +29,7 @@ class AnniverssaryWidget extends StatelessWidget {
       color: overlayColor,
       elevation: cardElevation / 2,
       child: Padding(
-        padding: EdgeInsets.all(paddingMobile),
+        padding: EdgeInsets.all(padding),
         child: Row(
           children: [
             CircleAvatar(
@@ -37,7 +37,7 @@ class AnniverssaryWidget extends StatelessWidget {
               radius: 24,
               child: Icon(Icons.calendar_today_outlined, color: onPrimaryColor),
             ),
-            SizedBox(width: paddingMobile),
+            SizedBox(width: padding),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -56,7 +56,7 @@ class AnniverssaryWidget extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: onOverlayColor
+                        color: onOverlayColor,
                       ),
                     ),
                   ],
@@ -79,7 +79,7 @@ class NumberOfTravels extends StatelessWidget {
       color: overlayColor,
       elevation: cardElevation / 2,
       child: Padding(
-        padding: EdgeInsets.all(paddingMobile),
+        padding: EdgeInsets.all(padding),
         child: Row(
           children: [
             CircleAvatar(
@@ -87,11 +87,15 @@ class NumberOfTravels extends StatelessWidget {
               radius: 24,
               child: Icon(Icons.flight_takeoff, color: onPrimaryColor),
             ),
-            SizedBox(width: paddingMobile),
+            SizedBox(width: padding),
             Expanded(
               child: Text(
                 'Dedeco já visitou Goiânia 2 vezes!',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: onOverlayColor),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: onOverlayColor,
+                ),
               ),
             ),
           ],

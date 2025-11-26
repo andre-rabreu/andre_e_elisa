@@ -1,6 +1,7 @@
 import 'package:andre_e_elisa/constants.dart';
 import 'package:andre_e_elisa/widgets/clock_widget.dart';
 import 'package:andre_e_elisa/widgets/music_player_widget.dart';
+import 'package:andre_e_elisa/widgets/special_message_widget.dart';
 import 'package:andre_e_elisa/widgets/timeline_entry_widget.dart';
 import 'package:andre_e_elisa/widgets/trivia_widget.dart';
 import 'package:flutter/material.dart';
@@ -81,19 +82,20 @@ class _HomePageState extends State<HomePage> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [primaryColor, backgroundColor],
-              stops: [0.0, 0.1]
+              stops: [0.0, 0.1],
             ),
           ),
           child: Center(
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 700),
               child: Padding(
-                padding: EdgeInsets.all(paddingMobile),
+                padding: EdgeInsets.all(padding),
                 child: Column(
-                  spacing: paddingMobile,
+                  spacing: padding,
                   children: <Widget>[
                     MusicPlayerWidget(),
                     ClockWidget(),
+                    VerseWidget(),
                     TriviaWidget(),
                     Column(
                       children: timelineEntries

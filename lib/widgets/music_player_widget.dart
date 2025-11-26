@@ -71,7 +71,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
             elevation: 8,
             color: surfaceColor,
             child: Padding(
-              padding: EdgeInsets.all(paddingMobile),
+              padding: EdgeInsets.all(padding),
               child: Row(
                 children: [
                   ClipRRect(
@@ -93,7 +93,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                       ),
                     ),
                   ),
-                  SizedBox(width: paddingMobile),
+                  SizedBox(width: padding),
                   Expanded(
                     child: Center(
                       child: Column(
@@ -193,7 +193,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
             elevation: 8,
             color: surfaceColor,
             child: Padding(
-              padding: EdgeInsets.all(paddingMobile),
+              padding: EdgeInsets.all(padding),
               child: Center(
                 child: Column(
                   children: [
@@ -215,7 +215,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                         ),
                       ),
                     ),
-                    SizedBox(height: paddingMobile),
+                    SizedBox(height: padding),
                     Text(
                       'Mil Anos',
                       style: TextStyle(
@@ -226,18 +226,11 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                     ),
                     Text(
                       'Jorge e Mateus',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: onSurfaceColor,
-                      ),
+                      style: TextStyle(fontSize: 16, color: onSurfaceColor),
                     ),
                     Row(
                       children: [
-                        Icon(
-                          Icons.volume_mute,
-                          size: 24,
-                          color: primaryColor,
-                        ),
+                        Icon(Icons.volume_mute, size: 24, color: primaryColor),
                         Expanded(
                           child: Slider(
                             value: volume,
@@ -254,11 +247,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                             },
                           ),
                         ),
-                        Icon(
-                          Icons.volume_up,
-                          size: 24,
-                          color: primaryColor,
-                        ),
+                        Icon(Icons.volume_up, size: 24, color: primaryColor),
                       ],
                     ),
                     Row(
@@ -277,10 +266,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                             padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              border: Border.all(
-                                color: primaryColor,
-                                width: 1,
-                              ),
+                              border: Border.all(color: primaryColor, width: 1),
                             ),
                             child: AnimatedIcon(
                               icon: AnimatedIcons.play_pause,
@@ -289,11 +275,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                             ),
                           ),
                         ),
-                        Icon(
-                          Icons.skip_next,
-                          size: 24,
-                          color: primaryColor,
-                        ),
+                        Icon(Icons.skip_next, size: 24, color: primaryColor),
                       ],
                     ),
                   ],

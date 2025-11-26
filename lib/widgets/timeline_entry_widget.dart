@@ -19,7 +19,7 @@ class TimelineEntryWidget extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width > breakpointMobile
           ? imageWidthWeb + marginWeb * 2
-          : imageWidthMobile + paddingMobile * 2,
+          : imageWidthMobile + padding * 2,
       child: Column(
         children: <Widget>[
           Row(

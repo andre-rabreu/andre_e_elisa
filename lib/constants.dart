@@ -4,7 +4,7 @@ final double breakpointMobile = 400.0;
 final double imageWidthMobile = 280.0;
 final double imageWidthWeb = 440.0;
 final double marginWeb = 24.0;
-final double paddingMobile = 16;
+final double padding = 16;
 final double cardElevation = 8.0;
 
 final Color backgroundColor = Color.fromARGB(255, 18, 18, 18);
