@@ -17,6 +17,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
   double volume = 0.5;
 
   bool isPlaying = false;
+  bool hasStarted = false;
 
   @override
   void initState() {
@@ -30,19 +31,32 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
     AudioCache.instance = AudioCache(prefix: '');
     player = AudioPlayer();
     player.setReleaseMode(ReleaseMode.loop);
-    _initAudio();
   }
 
-  Future<void> _initAudio() async {
+  Future<void> startPlayback() async {
     try {
-      await player.setSource(AssetSource('songs/mil-anos.mp3'));
+      await player.setSourceUrl(
+        ('https://pub-f9783e61b5a24204aeb4b2690d873059.r2.dev/songs/mil-anos.mp3'),
+      );
       await player.setVolume(volume);
+      await player.resume();
+
+      setState(() {
+        hasStarted = true;
+        isPlaying = true;
+      });
+      controller.forward();
     } catch (e) {
-      debugPrint("Error loading audio: $e");
+      debugPrint("Error starting audio: $e");
     }
   }
 
-  void togglePlay() {
+  void togglePlayback() {
+    if (!hasStarted) {
+      startPlayback();
+      return;
+    }
+
     setState(() {
       isPlaying = !isPlaying;
       if (isPlaying) {
@@ -76,11 +90,30 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      'images/jorge-e-mateus.jpg',
+                    child: Image.network(
+                      'https://pub-f9783e61b5a24204aeb4b2690d873059.r2.dev/images/jorge-e-mateus.jpg',
                       width: 144,
                       height: 144,
                       fit: BoxFit.cover,
+                      loadingBuilder:
+                          (
+                            BuildContext context,
+                            Widget child,
+                            ImageChunkEvent? loadingProgress,
+                          ) {
+                            if (loadingProgress == null) {
+                              return child;
+                            }
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value:
+                                    loadingProgress.expectedTotalBytes != null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
                       errorBuilder: (context, error, stackTrace) => Container(
                         width: 144,
                         height: 144,
@@ -156,7 +189,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                               ),
                               IconButton(
                                 iconSize: 24,
-                                onPressed: () => togglePlay(),
+                                onPressed: () => togglePlayback(),
                                 icon: Container(
                                   padding: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
@@ -199,10 +232,29 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'images/jorge-e-mateus.jpg',
+                      child: Image.network(
+                        'https://pub-f9783e61b5a24204aeb4b2690d873059.r2.dev/images/jorge-e-mateus.jpg',
                         width: double.infinity,
                         fit: BoxFit.fitWidth,
+                        loadingBuilder:
+                            (
+                              BuildContext context,
+                              Widget child,
+                              ImageChunkEvent? loadingProgress,
+                            ) {
+                              if (loadingProgress == null) {
+                                return child;
+                              }
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value:
+                                      loadingProgress.expectedTotalBytes != null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                            loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              );
+                            },
                         errorBuilder: (context, error, stackTrace) => Container(
                           width: 144,
                           height: 144,
@@ -261,7 +313,7 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget>
                         ),
                         IconButton(
                           iconSize: 24,
-                          onPressed: () => togglePlay(),
+                          onPressed: () => togglePlayback(),
                           icon: Container(
                             padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
