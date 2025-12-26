@@ -34,7 +34,7 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
   Future<List<Photo>> fetchPhotos() async {
     try {
       final response = await http.get(
-        Uri.parse('https://timeline-api.andrerenato-aabreu.workers.dev'),
+        Uri.parse('https://timeline-api-production.andrerenato-aabreu.workers.dev'),
       );
 
       if (response.statusCode == 200) {
