@@ -90,9 +90,9 @@ class NumberOfTravels extends StatelessWidget {
             SizedBox(width: padding),
             Expanded(
               child: Text(
-                'Dedeco já visitou Goiânia 2 vezes!',
+                'Dedeco já visitou Goiânia 3 vezes!',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: onOverlayColor,
                 ),
