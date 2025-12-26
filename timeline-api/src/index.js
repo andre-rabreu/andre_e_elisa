@@ -21,14 +21,18 @@ export default {
     }
 
     try {
-      const list = await env.MY_BUCKET.list({ limit: 100, prefix: 'images/' });
+      const list = await env.MY_BUCKET.list({ limit: 100, prefix: 'photos/' });
       const baseUrl = "https://pub-f9783e61b5a24204aeb4b2690d873059.r2.dev";
 
-      const files = list.objects.map((obj) => ({
-        filename: obj.key,
-        url: `${baseUrl}/${obj.key}`,
-        uploadedAt: obj.uploaded,
-      }));
+      const files = list.objects
+        .filter((obj) => !obj.key.endsWith('/'))
+        .map((obj) => {
+          return {
+            filename: obj.key,
+            url: `${baseUrl}/${obj.key}`,
+            uploadedAt: obj.uploaded,
+          };
+        });
 
       return new Response(JSON.stringify(files), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },

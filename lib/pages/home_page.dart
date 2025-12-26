@@ -3,7 +3,6 @@ import 'package:andre_e_elisa/widgets/clock_widget.dart';
 import 'package:andre_e_elisa/widgets/image_carousel_widget.dart';
 import 'package:andre_e_elisa/widgets/music_player_widget.dart';
 import 'package:andre_e_elisa/widgets/verse_widget.dart';
-import 'package:andre_e_elisa/widgets/timeline_entry_widget.dart';
 import 'package:andre_e_elisa/widgets/trivia_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -45,20 +44,6 @@ class _HomePageState extends State<HomePage> {
                     VerseWidget(),
                     ImageCarouselWidget(),
                     TriviaWidget(),
-                    // Column(
-                    //   children: timelineEntries
-                    //       .expand(
-                    //         (entry) => [
-                    //           SizedBox(height: 64),
-                    //           TimelineEntryWidget(
-                    //             date: entry['date']!,
-                    //             imageUrl: entry['imageUrl']!,
-                    //             title: entry['title']!,
-                    //           ),
-                    //         ],
-                    //       )
-                    //       .toList(),
-                    // ),
                     SizedBox(height: 64),
                     Text(
                       'Eu te amo!',

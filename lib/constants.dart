@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final double breakpointMobile = 400.0;
+final double breakpointMobile = 440.0;
 final double imageWidthMobile = 280.0;
 final double imageWidthWeb = 440.0;
 final double marginWeb = 24.0;

@@ -20,7 +20,13 @@
 		"production": {
 			"vars": {
 				"ALLOWED_ORIGIN": "https://andre-rabreu.github.io"
-			}
+			},
+			"r2_buckets": [
+				{
+					"binding": "MY_BUCKET",
+					"bucket_name": "andre-e-elisa"
+				}
+			],
 		}
 	}
 	/**
