@@ -35234,7 +35234,7 @@ uc(){var s=0,r=A.F(t.vX),q,p=2,o=[],n,m,l,k,j,i,h,g,f
 var $async$uc=A.G(function(a,b){if(a===1){o.push(b)
 s=p}while(true)switch(s){case 0:p=4
 s=7
-return A.H(A.aAB(A.fc("https://timeline-api.andrerenato-aabreu.workers.dev",0,null)),$async$uc)
+return A.H(A.aAB(A.fc("https://timeline-api-production.andrerenato-aabreu.workers.dev",0,null)),$async$uc)
 case 7:n=b
 if(n.b===200){i=n
 m=B.bT.KZ(A.aAn(A.aya(i.e)).dX(i.w),null)
